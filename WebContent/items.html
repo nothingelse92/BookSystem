@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>Bootstrap Login Form Template</title>
+        <link rel="stylesheet" href="assets/css/css.css">
+    
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/form-elements.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Favicon and touch icons -->
+    <link rel="shortcut icon" href="assets/ico/favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+    <script src="assets/js/jquery-1.11.1.min.js"></script>
+        <script >
+	        $(document).ready(function(){
+                var cookie = document.cookie;
+				if(cookie.length > 0){
+					c_start=document.cookie.indexOf("username=");
+					if (c_start!=-1){
+						c_start=c_start + 9;
+						c_end=document.cookie.indexOf(";",c_start);
+						if (c_end==-1) c_end=document.cookie.length;
+						var username = unescape(document.cookie.substring(c_start,c_end))
+					}
+					document.getElementById("signup").innerHTML = "主页";
+					document.getElementById("signup").href = "user.html";
+					document.getElementById("signin").innerHTML = username;
+					document.getElementById("signin").href = "user.html";
+				}
+                var showtypes=new Array("getHotBooks.do","getFlowBooks.do","getHotBooks.do");
+                var tot = 1;
+                for(var i = 0 ; i < 3;++i){
+                $.ajax({
+                    async: false, 
+                    type:"GET",
+                    url: showtypes[i],
+                    data: {booktype:"good"},
+                    success:function(data){
+                        var obj = JSON.parse(data);
+                        for(var j = 0; j< 3;++j){
+
+                        var booktag = "bookname" + tot;
+                        var bookname = obj[j].name;
+                        var imgtag = "img" + tot;
+                        var img = obj[j].pic;
+                        var contenttag = "content" +tot;
+                        var content = obj[j].description;
+                        var detailtag = "d"+tot;
+                        var bookid = obj[j].id;
+                        document.getElementById(imgtag).src = "upload/" + img;
+                        document.getElementById(detailtag).href = "book.html?books_id=" +bookid ;
+                        document.getElementById(booktag).innerHTML = bookname;
+                        document.getElementById(contenttag).innerHTML = content.substr(0,50)+"...";
+                        tot = tot + 1;
+                        }//for j loop
+                    }
+				}); 
+                }//for i  loop
+                tot = 1;
+                $.ajax({
+                    async:false, 
+                    type:"GET",
+                    url: "getComment.do",
+                    data: {books_id: "3"},
+                    success:function(data){
+                        var obj = JSON.parse(data);
+                        for(var i = 0;i<3;++i){
+                        var booktag = "review" + tot;
+                        var bookname = "创业维艰";
+                        //var bookname = obj[j].name;
+                       // var imgtag = "img" + tot;
+                        //var img = obj[j].pic;
+                        var contenttag = "p" +tot;
+                        var content = obj[0];
+                        var detailtag = "r"+tot;
+                        var bookid = "3";
+                        document.getElementById(detailtag).href = "comments.html?books_id=" +bookid ;
+                        document.getElementById(booktag).innerHTML = bookname;
+                        document.getElementById(contenttag).innerHTML = content.substr(0,50)+"...";
+                        tot = tot + 1;
+                        }//for i loop
+                    }
+				});  
+            });
+		</script>
+  </head>
+
+  <body>
+  <div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="row clearfix">
+				<div class="col-md-12 column">
+					<h1>
+						图书漂流系统
+					</h1>
+				</div>
+			</div>
+            <br>
+			<nav class="navbar navbar-default" role="navigation">
+				<div class="navbar-header">
+					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">图书漂流</a>
+				</div>
+				
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li class="active">
+							 <a href="item.html">首页</a>
+						</li>
+						<li>
+							 <a href="hot.html">热门推荐</a>
+						</li>
+						<li>
+							 <a href="flow.html">漂流区</a>
+						</li>
+						<li>
+							 <a href="getflow.html">求漂区</a>
+						</li>
+                        <li>
+							 <a href="sale.html">图书交易</a>
+						</li>
+                        <li>
+							 <a href="comments.html">读书分享</a>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							 <a href="login.html" id = "signin">登录</a>
+						</li>
+                        <li>
+							 <a href="sign_up.html" id = "signup">注册</a>
+						</li>
+					</ul>
+				</div>
+				
+			</nav>
+		</div>
+	</div>
+<div class="row clearfix">
+		<div class="col-md-12 column">
+			<h3>
+                <a href ="hot.html" align = "left">热门推荐</a>
+			</h3>
+			<div class="row">
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<img src="assets/img/book/ml.png" height="150" width="150" id  = "img1"/>
+						<div class="caption">
+							<h3 id = "bookname1">
+                                Java疯狂讲义
+							</h3>
+							<p id = "content1">
+								覆盖Java 8的Lambda表达式、函数式编程、流式编程、并行支持、改进的类型推断、JDBC 4.2等新特性，880分钟视频讲解，550多个实例，海量代码，详实的PPT课件，疯狂Java讲义》被多所“985”“211”院校选做教材或中文推荐参考书；
+							</p>
+							<p>
+								 <a class="btn btn-primary" href="#">点赞</a> <a class="btn" href="book.html" id = "d1">详情</a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<img height="150" width="150" src="assets/img/book/ml1.png" id = "img2"/>
+						<div class="caption">
+							<h3 id = "bookname2">
+								bookname2
+							</h3>
+							<p id = "content2">
+								覆盖Java 8的Lambda表达式、断、JD
+							</p>
+							<p>
+								 <a class="btn btn-primary" href="#">点赞</a> <a class="btn" href="book.html" id = "d2">详情</a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<img height="150" width="150" src="http://ibootstrap-file.b0.upaiyun.com/lorempixel.com/600/200/sports/default.jpg" id = "img3" />
+						<div class="caption">
+							<h3 id = "bookname3">
+								bookname3
+							</h3>
+							<p id = "content3">
+								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+							</p>
+							<p>
+								 <a class="btn btn-primary" href="#">点赞</a> <a class="btn" href="book.html" id = "d3">详情</a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<h3>
+				<a href = "flow.html"> 漂流区</a>
+			</h3>
+			<div class="row">
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<img height="150" width="150" src="http://ibootstrap-file.b0.upaiyun.com/lorempixel.com/600/200/people/default.jpg" id = "img4"/>
+						<div class="caption">
+							<h3 id = "bookname4">
+								Thumbnail label
+							</h3>
+							<p id = "content4">
+								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+							</p>
+							<p>
+								 <a class="btn btn-primary" href="#">点赞</a> <a class="btn" href="book.html" id = "d4">详情</a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<img height="150" width="150" src="http://ibootstrap-file.b0.upaiyun.com/lorempixel.com/600/200/city/default.jpg" id = "img5" />
+						<div class="caption">
+							<h3 id = "bookname5">
+								Thumbnail label
+							</h3>
+							<p id = "content5">
+								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+							</p>
+							<p>
+								 <a class="btn btn-primary" href="#">点赞</a> <a class="btn" href="book.html" id = "d5">详情</a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<img height="150" width="150" src="http://ibootstrap-file.b0.upaiyun.com/lorempixel.com/600/200/sports/default.jpg" id = "img6"/>
+						<div class="caption">
+							<h3 id = "bookname6">
+								Thumbnail label
+							</h3>
+							<p id = "content6">
+								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+							</p>
+							<p>
+								 <a class="btn btn-primary" href="#">点赞</a> <a class="btn" href="book.html" id = "d6">详情</a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<h3>
+				<a href = "getflow.html"> 求漂区</a>
+			</h3>
+			<div class="row">
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<img height="150" width="150" src="http://ibootstrap-file.b0.upaiyun.com/lorempixel.com/600/200/people/default.jpg" id = "img7" />
+						<div class="caption">
+							<h3 id = "bookname7">
+								Thumbnail label
+							</h3>
+							<p id = "content7">
+								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+							</p>
+							<p>
+								 <a class="btn btn-primary" href="#">点赞</a> <a class="btn" href="book.html" id = "d7">详情</a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<img height="150" width="150" src="http://ibootstrap-file.b0.upaiyun.com/lorempixel.com/600/200/city/default.jpg" id = "img8"/>
+						<div class="caption">
+							<h3 id = "bookname8">
+								Thumbnail label
+							</h3>
+							<p id = "content8">
+								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+							</p>
+							<p>
+								 <a class="btn btn-primary" href="#">点赞</a> <a class="btn" href="book.html" id = "d8">详情</a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<img  height="150" width="150" src="http://ibootstrap-file.b0.upaiyun.com/lorempixel.com/600/200/sports/default.jpg" id = "img9"/>
+						<div class="caption">
+							<h3 id = "bookname9">
+								Thumbnail label
+							</h3>
+							<p id = "content9">
+								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+							</p>
+							<p>
+								 <a class="btn btn-primary" href="#">点赞</a> <a class="btn" href="book.html" id = "d9">详情</a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<h3>
+				<a href = "comments.html">读书分享</a>
+			</h3>
+			<div class="row clearfix">
+				<div class="col-md-4 column">
+					<h2 id = "review1">
+						Heading
+					</h2>
+					<p id = "p1">
+						Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+					</p>
+					<p>
+						 <a class="btn" href="#" id = "r1">详情</a>
+					</p>
+				</div>
+				<div class="col-md-4 column">
+					<h2 id = "review2">
+						Heading
+					</h2>
+					<p id = "p2">
+						Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+					</p>
+					<p>
+						 <a class="btn" href="r2" id ="r2">详情</a>
+					</p>
+				</div>
+				<div class="col-md-4 column">
+					<h2 id = "review3">
+						Heading
+					</h2>
+					<p id = "p3">
+						Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+					</p>
+					<p>
+						 <a class="btn" href="r3" id = "r3">详情</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</html>
+

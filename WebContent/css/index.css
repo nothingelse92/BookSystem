@@ -1,0 +1,192 @@
+@charset "utf-8";
+/* CSS Document */
+#web {
+	width: 950px;
+	margin: auto;
+	font: 12px "宋体";
+}
+
+#top {
+	width: 100%;
+	height: 120px;
+}
+
+#login {
+	width: 100%;
+	height: 30px;
+	background-image: url(../images/friend_t.gif);
+}
+
+.login_1 {
+	float: right;
+}
+
+#logo {
+	width: 100%;
+	height: 80px;
+	border: 1px solid #CCC;
+}
+
+.new_china {
+	float: left;
+}
+
+.pe_channel {
+	float: right;
+}
+
+#main {
+	width: 100%;
+	height: 890px;
+}
+
+#left {
+	width: 160px;
+	height: 100%;
+	float: left;
+}
+
+#left_top {
+	width: 100%;
+	height: 300px;
+}
+
+.ul_top {
+	width: 100%;
+	height: 250px;
+	margin: 20px 0px 0px 0px;
+	padding: 0px;
+	background-image: url(../images/sidebarbg.gif);
+}
+
+.ul_top li {
+	list-style: none;
+}
+
+.ul_top li a {
+	text-decoration: none;
+	color: #000;
+}
+
+#right {
+	width: 780px;
+	height: 100%;
+	float: right;
+}
+
+.news_fl {
+	float: right;
+}
+
+.wid {
+	height: 30px;
+	float: left;
+}
+
+#right_left {
+	width: 520px;
+	float: left;
+}
+
+#right_left p {
+	float: right;
+}
+
+.news_kind {
+	width: 100%;
+	height: 40px;
+	padding: 0px;
+	margin: 15px 0px 0px 0px;
+}
+
+.news_kind li {
+	list-style: none;
+	font: bold 12px "宋体";
+	float: left;
+	margin: 5px 0px 0px 0px;
+	width: 45px;
+	height: 10px;
+}
+
+.topic {
+	padding: 0px;
+	margin: 0px 0px 0px 10px;
+	float: left;
+	width: 270px;
+	height: 115px;
+}
+
+.topic li {
+	height: 20px;
+	list-style: none;
+}
+
+.topic_time {
+	float: right;
+	margin: 0px;
+	padding: 0px;
+	height: 115px;
+}
+
+.topic_time li {
+	list-style: none;
+	height: 20px;
+}
+
+#right_rig {
+	width: 250px;
+	float: right;
+}
+
+.first_pic {
+	margin-top: 15px;
+}
+
+p {
+	text-align: center;
+	margin: 0px;
+	padding: 0px;
+	height: 18px;
+	line-height: 18px;
+}
+
+#foot {
+	width: 100%;
+	margin-top: 10px;
+	border: 1px solid #CCC;
+}
+
+.repeat1 {
+	background-image: url(../images/admin_bar.gif);
+	height: 23px;
+	border: #CCC 1px solid;
+}
+
+.repeat2 {
+	background-image: url(../images/firend_bg.gif);
+	height: 80px;
+}
+
+.repeat2 ul {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+	color: #06C;
+}
+
+.repeat2 ul	li {
+	float: left;
+	margin: 10px 10px 0px 5px;
+}
+
+#copyrig {
+	color: #999;
+}
+
+.que {
+	color: #03C;
+}
+
+.black {
+	color: #000;
+}

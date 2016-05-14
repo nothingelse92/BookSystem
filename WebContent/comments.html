@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>读书笔记</title>
+    <link rel="stylesheet" href="assets/css/css.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/form-elements.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Favicon and touch icons -->
+    <link rel="shortcut icon" href="assets/ico/favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+	<script src="assets/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript">
+		$(document).ready(function(){
+            function GetRequest() {
+                var url = location.search; //获取url中"?"符后的字串
+                var theRequest = new Object();
+                if (url.indexOf("?") != -1) {
+                     var str = url.substr(1);
+                     strs = str.split("&");
+                     for(var i = 0; i < strs.length; i ++) {
+                    theRequest[strs[i].split("=")[0]]=(strs[i].split("=")[1]);
+                }
+                 }
+                 return theRequest;
+            }
+            var Request = new Object();
+            Request = GetRequest();
+            var book_id = Request["books_id"];
+			$.ajax({  
+                type: "GET",  
+                url: "getComment.do",  
+                data: {books_id: book_id},  
+                success:function(data){
+                    var obj = JSON.parse(data);
+					var title = "创业维艰";
+					var comment = obj[0];
+					document.getElementById("title").innerHTML = title;
+					document.getElementById("comment").innerHTML = comment;
+                }  
+			});  
+		});
+	</script>
+  </head>
+
+  <body>
+  <div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="row clearfix">
+				<div class="col-md-12 column">
+					<h1>
+						图书漂流系统
+					</h1>
+				</div>
+			</div>
+            <br>
+			<nav class="navbar navbar-default" role="navigation">
+				<div class="navbar-header">
+					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="items.html">图书漂流</a>
+				</div>
+				
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li >
+							 <a href="items.html">首页</a>
+						</li>
+						<li>
+							 <a href="hot.html">热门推荐</a>
+						</li>
+						<li>
+							 <a href="flow.html">漂流区</a>
+						</li>
+						<li>
+							 <a href="getflow.html">求漂区</a>
+						</li>
+                        <li>
+							 <a href="sale.html">图书交易</a>
+						</li>
+                        <li class = "active">
+							 <a href="comments.html">读书分享</a>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							 <a href="login.html">登录</a>
+						</li>
+                        <li>
+							 <a href="sign_up.html">注册</a>
+						</li>
+					</ul>
+				</div>
+				
+			</nav>
+		</div>
+	</div>
+    <div class="row clearfix">
+		<div class="col-md-12 column">
+		<br>
+			<table align = "center" >
+						<tr>
+                            <td align = "left"><h2 id = "title">Java疯狂讲义</h2></td>
+                        </tr>
+                        <tr>
+                            <td align = "left"><p id = "comment">《疯狂软件教育标准教材：疯狂Java讲义（第3版》是《疯狂Java讲义》的第3版，保持了前两版系统、全面、讲解浅显、细致的特性，全面新增介绍了Java8的新特性，本书大部分示例程序都采用Lambda表达式、流式API进行了改写，因此务必使用Java8的JDK来编译、运行。
+　　《疯狂软件教育标准教材：疯狂Java讲义（第3版》深入介绍了Java编程的相关方面，全书内容覆盖了Java的基本语法结构、Java的面向对象特征、Java集合框架体系、Java泛型、异常处理、JavaGUI编程、JDBC数据库编程、Java注释、Java的IO流体系、Java多线程编程、Java网络通信编程和Java反射机制。覆盖了java.lang、java.util、java.text、java.io和java.nio、java.sql、java.awt、javax。swing包下绝大部分类和接口。本书全面介绍了Java8的新的接口语法、Lambda表达式、方法引用、构造器引用、函数式编程、流式编程、新的日期、时间API、并行支持、改进的类型推断、重复注解、JDBC4.2新特性等新特性。《疯狂Java讲义》能让读者掌握Java编程思想，使你的Java从入门到精通。
+　　与前两版类似，本书并不单纯从知识角度来讲解Java，而是从解决问题的角度来介绍Java语言，所以本书中涉及大量实用案例开发：五子棋游戏、梭哈游戏、仿QQ的游戏大厅、MySQL企业管理器、仿EditPlus的文本编辑器、多线程、断点下载工具、Spring框架的IoC容器……这些案例既能让读者巩固每章的知识，又可以让读者学以致用，激发编程自豪感，进而引爆内心的编程激情。本书光盘里包含书中所有示例的代码和《疯狂Java实战演义》的所有项目代码，这些项目可以作为本书课后练习的“非标准答案”，如果读者需要获取关于课后习题的解决方法、编程思路，可以登录http：//www.crazyit.org站点与笔者及本书庞大的读者群相互交流。</p></td>
+                        </tr>
+            </table>
+		</div>
+	</div>
+</div>
+</html>
+
+

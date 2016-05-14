@@ -1,0 +1,31 @@
+@charset "utf-8";
+/* CSS Document */
+
+#web{width:950px; margin:auto; font:12px "宋体";}
+	#top{ width:100%; height:120px;}
+		#login{ width:100%; height:20px; padding:10px 0px 0px 5px;
+				 background-image:url(../images/friend_t.gif);}
+		#logo{ width:100%; height:80px; border:1px solid #CCC; }
+			.new_china{ float:left; }
+			.pe_channel{ float:right;}
+	#main{ width:100%; height:550px;}
+		.repeat1{ background-image:url(../images/admin_bar.gif); height:20px;
+				border:#CCC 1px solid; padding:5px 0px 0px 20px; font:13px "宋体";}	
+		.repeat1 a{ padding:20px; color:#000;}
+		#main_left{ width:160px; height:100%; float:left;}
+			#main_left p{ width:50px; height:5px; margin:15px 0px 0px 20px;}
+			#main_left p a{ color:#000;}	
+		#main_right{ width:780px; height:100%;float:right;}
+			.topic{ margin:30px 0px 0px 0px; float:left; width:560px; height:120px;}
+				.topic li{ height:20px; line-height:20px;}
+			.topic_time{margin:30px 0px 0px 0px;float:right;list-style:none;
+					 height:120px;}
+				.topic_time li{ height:20px; line-height:20px;}
+			.topic_time a{ color:#000; margin-left:15px;}
+			#main_right p{ float:right;}
+	#foot{ width:100%; height:25px;background-image:url(../images/nav_leftline.gif); }
+		#about{ width:100%; height:100%;margin:20px 0px 0px 0px; padding-left:200px;}
+	#copyrig{ color:#999; text-align:center;}
+			.que{ color:#03C;}
+			.black{ color:#000;}
+			

@@ -1,0 +1,170 @@
+@charset "utf-8";
+/* CSS Document */
+#web {
+	width: 950px;
+	margin: auto;
+	height:auto;
+	font: 12px "宋体";
+}
+
+#top {
+	width: 100%;
+	height: 120px;
+}
+
+#login {
+	width: 100%;
+	height: 30px;
+	background-image: url(../images/friend_t.gif);
+}
+
+.login_1 {
+	float: right;
+}
+
+#logo {
+	width: 100%;
+	height: 80px;
+	border: 1px solid #CCC;
+}
+
+.new_china {
+	float: left;
+}
+
+.pe_channel {
+	float: right;
+}
+
+#main {
+	width: 100%;
+	height: auto;
+	
+}
+
+#left {
+	width: 160px;
+	height: 100%;
+	float: left;
+}
+
+#left_top {
+	width: 100%;
+	height: 300px;
+}
+
+.ul_top {
+	width: 100%;
+	height: 250px;
+	margin: 20px 0px 0px 0px;
+	padding: 0px;
+	background-image: url(../images/sidebarbg.gif);
+}
+
+.ul_top li {
+	list-style: none;
+}
+
+.ul_top li a {
+	text-decoration: none;
+	color: #000;
+}
+
+#right {
+	width: 780px;
+	height:auto;
+	float: right;
+}
+
+.news_fl {
+	margin: -20px 0px 0px -5px;
+	float: right;
+}
+
+#hr {
+	background-image: url(../images/arrow.gif);
+	width: 550px;
+	height: 1px;
+	margin-left: 120px;
+}
+
+#right h3 {
+	text-align: center;
+	margin-top: 30px;
+}
+
+.content {
+	width: 550px;
+	margin-left: 120px;
+}
+
+.time {
+	width: 100%;
+	text-align: center;
+}
+
+table {
+	margin: 10px 0px 10px 0px;
+}
+
+tr {
+	width: 550px;
+	height: 30px;
+}
+
+td {
+	width: 200px;
+}
+
+textarea {
+	width: 550px;
+	height: 200px;
+	margin-left: -120px;
+}
+
+.margin_left {
+	margin-left: 50px;
+}
+
+#foot {
+	width: 100%;
+	border: 1px solid blue;
+	float: left;
+}
+
+.repeat1 {
+	background-image: url(../images/admin_bar.gif);
+	height: 23px;
+	border: #CCC 1px solid;
+}
+
+.repeat2 {
+	background-image: url(../images/firend_bg.gif);
+	height: 80px;
+}
+
+.repeat2 ul {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+	color: #06C;
+}
+
+.repeat2 ul	li {
+	float: left;
+	margin: 10px 10px 0px 5px;
+}
+
+#copyrig {
+	border:solid 0px blue;clear: both;
+	color: #999;
+	text-align: center;
+}
+
+.que {
+	color: #03C;
+}
+
+.black {
+	color: #000;
+}

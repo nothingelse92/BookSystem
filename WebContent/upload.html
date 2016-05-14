@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>账户信息</title>
+
+        <!-- CSS -->
+            <link rel="stylesheet" href="assets/css/css.css">
+        
+        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="assets/css/form-elements.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" href="assets/ico/favicon.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+        <script src="assets/js/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript">
+	        $(document).ready(function(){
+                $("button").click(function(){
+				var name = $("#name").val();
+				var description= $("#description").val();
+                var contact = $("#contact").val();
+                var picture = $("#picture").val();
+                var choice = $("#choice").val();
+                if(name.length == 0 || description.length == 0 || contact.length == 0){
+                    alert("输入不能为空!");
+                }
+				$.ajax({  
+                   type: "POST",  
+                   url: "user/upload",  
+                   data: {name: name, description:description,contact:contact,picture:picture,choice:choice},  
+                   success:function(data){
+						alert("上传成功!");
+                   }  
+				});  
+				});
+            });
+        </script> 
+    </head>
+    <body>
+        <h1>
+			账户信息
+		</h1>
+        <div class="container">
+	        <div class="row clearfix">
+		        <div class="col-md-12 column">
+			        <ul class="nav nav-tabs">
+                        <li>
+				        	 <a href="items.html">首页</a>
+			        	</li>
+			        	<li>
+				        	 <a href="user.html">个人信息</a>
+			        	</li>
+				        <li>
+				        	 <a href="history.html">发布历史</a>
+			        	</li>
+			        	<li class="active">
+				        	 <a href="#">信息发布</a>
+			        	</li>
+                        <li>
+				        	 <a href="upcomment.html">读书分享</a>
+			        	</li>
+			        </ul>
+					<br>
+					<div class="col-md-12 column">
+						<form role="form">
+							<table align = "center" cellspacing="100">
+								<tr>
+									<td align = "left">书名:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+									<td>   </td>
+									<td align = "left">
+										<input type="email" id="name" />
+									</td>
+								</tr>
+								<tr>
+									<td>&nbsp;</td>
+								</tr>
+								<tr>
+									<td align = "left">图书描述:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+									<td>   </td>
+									<td align = "left">
+										<input type="email" id="description" />
+									</td> 
+								</tr>
+								<tr>
+									<td>&nbsp;</td>
+								</tr>
+								<tr>
+									<td align = "left">联系方式:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+									<td>   </td>
+									<td align = "left">
+										<input type="email" id="contact" />
+									</td>
+								</tr>
+								<tr>
+									<td>&nbsp;</td>
+								</tr>
+								<tr>
+									<td align = "left">上传封面:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+									<td>   </td>
+									<td align = "left">
+										<input type="file" id="picture" />
+									</td>
+								</tr>
+								<tr>
+									<td>&nbsp;</td>
+								</tr>
+							</table>
+							<p class = "text-center">漂流<input type="radio" checked="checked" name = "type" id = "flow1" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;求漂<input type="radio" name = "type" id = "flow2"/></p>
+							<button type="button" class="btn btn-default btn-success" id = "submit">提交</button>
+						</form>
+					</div>
+		        </div>
+        	</div>
+        </div>
+    </body>
+</html>

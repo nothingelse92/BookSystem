@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>账户信息</title>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="assets/css/css.css">        
+        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="assets/css/form-elements.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" href="assets/ico/favicon.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+        <script src="assets/js/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript">
+	        $(document).ready(function(){
+				var tbody = document.getElementById("tbody");
+				var tr = document.createElement("tr");
+				var td1 = document.createElement("td");
+				var td2 = document.createElement("td");
+				var td3 = document.createElement("td");
+				td1.align = "left";
+				td1.innerHTML = "机器学习";
+				td2.align = "left";
+				td2.innerHTML = "2015/09/09";
+				td3.align = "left";
+				td3.innerHTML = "撤销";
+				tbody.appendChild(tr);
+				tbody.appendChild(td1);
+				tbody.appendChild(td2);
+				tbody.appendChild(td3);
+                $.ajax({
+                    type: "GET",  
+                    url: "user/getHistory",  
+                    data: {username: username},
+                    success:function(data){
+						var tbody = document.getElementById("tbody");
+						for(var i = 0; i < num ;++i){
+							var tr = document.createElement("tr");
+							var td1 = document.createElement("td");
+							var td2 = document.createElement("td");
+							var td3 = document.createElement("td");
+							td1.align = "left";
+							td1.innerHTML = "机器学习";
+							td2.align = "left";
+							td2.innerHTML = "2015/09/09";
+							td3.align = "left";
+							td3.innerHTML = "撤销";
+							tbody.appendChild(tr);
+							tbody.appendChild(td1);
+							tbody.appendChild(td2);
+							tbody.appendChild(td3);
+						}
+                   }  
+				}); 
+            });
+        </script> 
+    </head>
+    <body>
+        <h1>
+			账户信息
+		</h1>
+        <div class="container">
+	        <div class="row clearfix">
+		        <div class="col-md-12 column">
+			        <ul class="nav nav-tabs">
+                        <li>
+				        	 <a href="items.html">首页</a>
+			        	</li>
+			        	<li>
+				        	 <a href="user.html">个人信息</a>
+			        	</li>
+				        <li class="active">
+				        	 <a href="#div1">发布历史</a>
+			        	</li>
+			        	<li>
+				        	 <a href="upload.html">信息发布</a>
+			        	</li>
+                        <li>
+				        	 <a href="upcomment.html">读书分享</a>
+			        	</li>
+			        </ul>
+					<div class="col-md-12 column">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>
+										书名
+									</th>
+									<th>
+										发布时间
+									</th>
+									<th>
+										状态
+									</th>
+								</tr>
+							</thead>
+							<tbody id = "tbody">
+								
+							</tbody>
+						</table>
+					</div>
+		        </div>
+        	</div>
+        </div>
+    </body>
+</html>

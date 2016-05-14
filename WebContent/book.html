@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>图书详情</title>
+    <link rel="stylesheet" href="assets/css/css.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/form-elements.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Favicon and touch icons -->
+    <link rel="shortcut icon" href="assets/ico/favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+	<script src="assets/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript">
+		$(document).ready(function(){
+            function GetRequest() {
+                var url = location.search; //获取url中"?"符后的字串
+                var theRequest = new Object();
+                if (url.indexOf("?") != -1) {
+                     var str = url.substr(1);
+                     strs = str.split("&");
+                     for(var i = 0; i < strs.length; i ++) {
+                    theRequest[strs[i].split("=")[0]]=(strs[i].split("=")[1]);
+                }
+                 }
+                 return theRequest;
+            }
+            var Request = new Object();
+            Request = GetRequest();
+            var book_id = Request["books_id"];
+			$.ajax({  
+                type: "GET",  
+                url: "getBook.do",  
+                data: {books_id: book_id},  
+                success:function(data){
+                    var obj = JSON.parse(data);
+					var bookname = obj[0].name;
+					var description = obj[0].description;
+                    var img = obj[0].pic;
+					var owner = "";
+                    var price = obj[0].price;
+					var contact = "";
+                    document.getElementById("img").src = "upload/" + img;
+                    document.getElementById("name").innerHTML = "《" + bookname + "》";
+                    document.getElementById("description").innerHTML = description;
+                    document.getElementById("price").innerHTML = price;
+                    document.getElementById("owner").innerHTML = owner;
+					document.getElementById("contact").innerHTML = contact;
+                    
+                }  
+			});  
+		});
+	</script>
+  </head>
+
+  <body>
+  <div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="row clearfix">
+				<div class="col-md-12 column">
+					<h1>
+						二手书系统
+					</h1>
+				</div>
+			</div>
+            <br>
+			<nav class="navbar navbar-default" role="navigation">
+				<div class="navbar-header">
+					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">二手书</a>
+				</div>
+				
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li class="active">
+							 <a href="#">首页</a>
+						</li>
+						<li>
+							 <a href="#">热门推荐</a>
+						</li>
+						<li>
+							 <a href="#">漂流区</a>
+						</li>
+						<li>
+							 <a href="#">求漂区</a>
+						</li>
+                        <li>
+							 <a href="#">图书交易</a>
+						</li>
+                        <li>
+							 <a href="#">读书分享</a>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							 <a href="login.html">登录</a>
+						</li>
+                        <li>
+							 <a href="sign_up.html">注册</a>
+						</li>
+					</ul>
+				</div>
+				
+			</nav>
+		</div>
+	</div>
+    <div class="row clearfix">
+		<div class="col-md-6 column">
+            <br>
+            <br>
+            <br>
+            <br>
+			<img  height="150" width="150" align = "center" src="assets/img/book/ml.png" id = "img" />
+		</div>
+		<div class="col-md-6 column">
+		<br>
+		<br>
+		<br>
+			 <table align = "center" >
+						<tr>
+                            <td align = "left">书名:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td align = "left" id = "name">book name</td>
+                        </tr>
+						<tr>
+                            <td align = "left">图书介绍:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td align = "left" id = "description">telephone number</td>
+                        </tr>
+                         <tr>
+                            <td align = "left" width = "150">图书拥有者:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td align = "left" id = "owner"> email address</td> 
+                        </tr>
+                         <tr>
+                            <td align = "left">联系方式:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td align = "left" id = "contact">telephone number</td>
+                        </tr>
+                         <tr>
+                            <td align = "left">价格:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td align = "left" id = "price">telephone number</td>
+                        </tr>
+                    </table>
+		</div>
+	</div>
+</div>
+</html>
+
