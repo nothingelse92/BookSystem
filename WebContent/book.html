@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <title>图书详情</title>
-    <link rel="stylesheet" href="assets/css/css.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/form-elements.css">
@@ -50,9 +50,9 @@
 					var bookname = obj[0].name;
 					var description = obj[0].description;
                     var img = obj[0].pic;
-					var owner = "";
+					var owner = "admin";
                     var price = obj[0].price;
-					var contact = "";
+					var contact = "121212";
                     document.getElementById("img").src = "upload/" + img;
                     document.getElementById("name").innerHTML = "《" + bookname + "》";
                     document.getElementById("description").innerHTML = description;
@@ -73,35 +73,35 @@
 			<div class="row clearfix">
 				<div class="col-md-12 column">
 					<h1>
-						二手书系统
+						图书漂流系统
 					</h1>
 				</div>
 			</div>
             <br>
 			<nav class="navbar navbar-default" role="navigation">
 				<div class="navbar-header">
-					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">二手书</a>
+					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">图书漂流</a>
 				</div>
 				
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
 						<li class="active">
-							 <a href="#">首页</a>
+							 <a href="items.html">首页</a>
 						</li>
 						<li>
-							 <a href="#">热门推荐</a>
+							 <a href="hot.html">热门推荐</a>
 						</li>
 						<li>
-							 <a href="#">漂流区</a>
+							 <a href="flow.html">漂流区</a>
 						</li>
 						<li>
-							 <a href="#">求漂区</a>
+							 <a href="getflow.html">求漂区</a>
 						</li>
                         <li>
-							 <a href="#">图书交易</a>
+							 <a href="sale.html">图书交易</a>
 						</li>
                         <li>
-							 <a href="#">读书分享</a>
+							 <a href="comments.html">读书分享</a>
 						</li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
@@ -139,7 +139,7 @@
                             <td align = "left" id = "description">telephone number</td>
                         </tr>
                          <tr>
-                            <td align = "left" width = "150">图书拥有者:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td align = "left" width = "150">发布者:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                             <td align = "left" id = "owner"> email address</td> 
                         </tr>
                          <tr>
