@@ -40,8 +40,11 @@
                    url: "login.do",  
                    data: {username: username, password:password},  
                    success:function(data){
+                        var obj = JSON.parse(data);
                         if(data.length > 0){
-                            document.cookie = "userrname="+username;
+                            document.cookie = "username="+obj[0].name+";";
+                            document.cookie = "email="+obj[0].email+";";
+                            document.cookie = "contact="+obj[0].phone+";";
                             self.location = "items.html";
                         }else{
                             alert("登录失败，请检查用户名和密码!");

@@ -47,7 +47,9 @@
                    url: "register.do",  
                    data: {username: username, password:password,email:email,contact:contact},  
                    success:function(data){
-						document.cookie = "username="+username;
+						document.cookie = "username="+username+";";
+                        document.cookie = "email="+email+";";
+                        document.cookie = "contact="+contact+";";
                         location.href="items.html";
                    }  
 				});  

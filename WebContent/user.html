@@ -30,18 +30,23 @@
         <script type="text/javascript">
 	        $(document).ready(function(){
                 var cookie = document.cookie;
-				if(cookie.length > 0){
-					c_start=document.cookie.indexOf("username=");
-					if (c_start!=-1){
-						c_start=c_start + 9;
-						c_end=document.cookie.indexOf(";",c_start);
-						if (c_end==-1) c_end=document.cookie.length;
-						var username = unescape(document.cookie.substring(c_start,c_end))
-					}
-				}
-                document.getElementById("email").innerHTML = "admin@pku.edu.cn";
-                document.getElementById("username").innerHTML = username;
-                document.getElementById("contact").innerHTML = "123123";  
+                alert(cookie);
+                function parser(tag,tlen){
+                    var ans = "";
+				    if(cookie.length > 0){
+					    c_start=document.cookie.indexOf(tag);
+					    if (c_start!=-1){
+					    	c_start=c_start + tlen;
+						    c_end=document.cookie.indexOf(";",c_start);
+					    	if (c_end==-1) c_end=document.cookie.length;
+						    ans = unescape(document.cookie.substring(c_start,c_end))
+					    }
+			    	}
+                    return ans;
+                }
+                document.getElementById("email").innerHTML = parser("email=",6);
+                document.getElementById("username").innerHTML = parser("username=",9);
+                document.getElementById("contact").innerHTML = parser("contact=",8);  
             });
         </script> 
     </head>
