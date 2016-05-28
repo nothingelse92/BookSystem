@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <title>图书详情</title>
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/form-elements.css">
@@ -27,7 +26,7 @@
     <script type="text/javascript">
 		$(document).ready(function(){
             function GetRequest() {
-                var url = location.search; //获取url中"?"符后的字串
+                var url = location.search;
                 var theRequest = new Object();
                 if (url.indexOf("?") != -1) {
                      var str = url.substr(1);
@@ -50,7 +49,7 @@
 					var bookname = obj[0].name;
 					var description = obj[0].description;
                     var img = obj[0].pic;
-					var owner = "admin";
+					var owner = obj[0].owner_id;
                     var price = obj[0].price;
 					var contact = "121212";
                     document.getElementById("img").src = "upload/" + img;
@@ -59,9 +58,32 @@
                     document.getElementById("price").innerHTML = price;
                     document.getElementById("owner").innerHTML = owner;
 					document.getElementById("contact").innerHTML = contact;
-                    
                 }  
 			});  
+            $.ajax({  
+                type: "GET",  
+                url: "getComment.do",  
+                data: {books_id: book_id},  
+                success:function(data){
+                    var obj = JSON.parse(data);
+                    var innerHtml;
+                    for(var i = 0 ; i < data.length;++i){
+                        var context = obj[i].comment;
+                        var user = obj[i].user;
+                        var commentTime = obj[i].time;
+                        var temp = "<p align = \"left\">";
+                        temp += context + "</p>";
+                        temp +=  "<p align = \"right\"><span class=\"label label-default\">";
+                        temp += user + commentTime;
+                        temp += "</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class=\"btn btn-primary\" href=\"#\">点赞</a></p>";
+                        innerHtml += temp;
+                    }
+                    document.getElementById("comment").innerHTML = insertHtml; 
+                }  
+			});  
+            $("#sortItem").change(function(){
+                    alert("fuck");
+            })
 		});
 	</script>
   </head>
@@ -123,7 +145,7 @@
             <br>
             <br>
             <br>
-			<img  height="150" width="150" align = "center" src="assets/img/book/ml.png" id = "img" />
+			<img  height="200" width="150" align = "center" src="assets/img/book/ml.png" id = "img" />
 		</div>
 		<div class="col-md-6 column">
 		<br>
@@ -131,28 +153,43 @@
 		<br>
 			 <table align = "center" >
 						<tr>
-                            <td align = "left">书名:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td align = "left" width = "200">书名:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                             <td align = "left" id = "name">book name</td>
                         </tr>
 						<tr>
-                            <td align = "left">图书介绍:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td align = "left" width = "200">图书介绍:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                             <td align = "left" id = "description">telephone number</td>
                         </tr>
                          <tr>
-                            <td align = "left" width = "150">发布者:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td align = "left" width = "200">发布者:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                             <td align = "left" id = "owner"> email address</td> 
                         </tr>
                          <tr>
-                            <td align = "left">联系方式:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td align = "left" width = "200">联系方式:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                             <td align = "left" id = "contact">telephone number</td>
                         </tr>
                          <tr>
-                            <td align = "left">价格:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td align = "left" width = "200">价格:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                             <td align = "left" id = "price">telephone number</td>
                         </tr>
                     </table>
 		</div>
 	</div>
-</div>
+    <br>
+    <div class="col-md-6 column" align = "left">
+        <a href = "#"><h4 align = "left">读书分享</h4></a>
+    </div>
+    <div class="col-md-6 column" align = "right">
+    <select name="sortItem" id="sortItem">   
+        <option value="1">默认排序</option>   
+        <option value="2">按时间排序</option>   
+        <option value="3">按评分排序</option>      
+    </select>   
+    </div>
+    <br>
+    <br>
+    <div class="col-md-12 column" id = "comment">
+             <p align = "right"><span class="label label-default">标签</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-primary" href="#">点赞</a></p>
+	</div>
 </html>
 
