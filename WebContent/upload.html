@@ -35,13 +35,14 @@
                 var contact = $("#contact").val();
                 var picture = $("#picture").val();
                 var choice = $("#choice").val();
+                //var type =  $("#flow1").val();
                 if(name.length == 0 || description.length == 0 || contact.length == 0){
                     alert("输入不能为空!");
                 }
 				$.ajax({  
                    type: "POST",  
-                   url: "user/upload",  
-                   data: {name: name, description:description,contact:contact,picture:picture,choice:choice},  
+                   url: "insertBook.do",  
+                   data: {name:name,owner_id:"0",pic:picture,description:description,upload_time:"0",price:"0",type:"0"},  
                    success:function(data){
 						alert("上传成功!");
                    }  
@@ -69,9 +70,6 @@
 			        	</li>
 			        	<li class="active">
 				        	 <a href="#">信息发布</a>
-			        	</li>
-                        <li>
-				        	 <a href="upcomment.html">读书分享</a>
 			        	</li>
 			        </ul>
 					<br>

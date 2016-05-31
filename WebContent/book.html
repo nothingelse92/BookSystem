@@ -23,6 +23,21 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
 	<script src="assets/js/jquery-1.11.1.min.js"></script>
+    <script>     
+        function getLocalTime(nS) {     
+            return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');     
+        }        
+        function zanClick(comment_id){
+            $.ajax({  
+                type: "POST",  
+                url: "likeComment.do",  
+                data: {comment_id: comment_id},  
+                success:function(data){
+                    alert("成功点赞!");
+                }  
+			});  
+        }
+    </script>
     <script type="text/javascript">
 		$(document).ready(function(){
             function GetRequest() {
@@ -40,6 +55,7 @@
             var Request = new Object();
             Request = GetRequest();
             var book_id = Request["books_id"];
+            document.getElementById("shu").href = "upcomment.html?books_id=" + book_id; 
 			$.ajax({  
                 type: "GET",  
                 url: "getBook.do",  
@@ -47,7 +63,7 @@
                 success:function(data){
                     var obj = JSON.parse(data);
 					var bookname = obj[0].name;
-					var description = obj[0].description;
+                    var description = obj[0].description;
                     var img = obj[0].pic;
 					var owner = obj[0].owner_id;
                     var price = obj[0].price;
@@ -62,27 +78,55 @@
 			});  
             $.ajax({  
                 type: "GET",  
-                url: "getComment.do",  
+                url: "getCommentByTime.do",  
                 data: {books_id: book_id},  
                 success:function(data){
                     var obj = JSON.parse(data);
-                    var innerHtml;
-                    for(var i = 0 ; i < data.length;++i){
+                    var inserHtml = "";
+                    for(var i = 0 ; i < obj.length;i++){
                         var context = obj[i].comment;
-                        var user = obj[i].user;
+                        var user = obj[i].user_id;
                         var commentTime = obj[i].time;
                         var temp = "<p align = \"left\">";
                         temp += context + "</p>";
                         temp +=  "<p align = \"right\"><span class=\"label label-default\">";
-                        temp += user + commentTime;
-                        temp += "</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class=\"btn btn-primary\" href=\"#\">点赞</a></p>";
-                        innerHtml += temp;
+                        temp += "user_"+user +" "+getLocalTime(commentTime);
+                        temp += "</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class=\"btn btn-primary\"  onclick = \"zanClick(" + obj[i].id + ")\">点赞("+(Number(obj[i].hot)+1)+")</a></p>";
+                        inserHtml += temp;
                     }
-                    document.getElementById("comment").innerHTML = insertHtml; 
+                    document.getElementById("comment").innerHTML = inserHtml; 
                 }  
 			});  
             $("#sortItem").change(function(){
-                    alert("fuck");
+                var rtl=document.getElementById("sortItem");
+                var index=rtl.selectedIndex; 
+                var func_url = "";
+                if(rtl.options[index].value == 3){
+                    func_url = "getCommentByRate.do";
+                }else{
+                    func_url = "getCommentByTime.do";
+                }
+                $.ajax({  
+                type: "GET",  
+                url: func_url,  
+                data: {books_id: book_id},  
+                success:function(data){
+                    var obj = JSON.parse(data);
+                    var inserHtml = "";
+                    for(var i = 0 ; i < obj.length;i++){
+                        var context = obj[i].comment;
+                        var user = obj[i].user_id;
+                        var commentTime = obj[i].time;
+                        var temp = "<p align = \"left\">";
+                        temp += context + "</p>";
+                        temp +=  "<p align = \"right\"><span class=\"label label-default\">";
+                        temp += "user_"+user +" "+getLocalTime(commentTime);
+                        temp += "</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class=\"btn btn-primary\" onclick = \"zanClick(" + obj[i].id + ")\">点赞("+(Number(obj[i].hot)+1)+")</a></p>";
+                        inserHtml += temp;
+                    }
+                    document.getElementById("comment").innerHTML = inserHtml; 
+                }  
+			});  
             })
 		});
 	</script>
@@ -177,7 +221,7 @@
 	</div>
     <br>
     <div class="col-md-6 column" align = "left">
-        <a href = "#"><h4 align = "left">读书分享</h4></a>
+        <a href = "upcomment.html" id = "shu"><h4 align = "left">读书分享</h4></a>
     </div>
     <div class="col-md-6 column" align = "right">
     <select name="sortItem" id="sortItem">   
@@ -189,7 +233,7 @@
     <br>
     <br>
     <div class="col-md-12 column" id = "comment">
-             <p align = "right"><span class="label label-default">标签</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-primary" href="#">点赞</a></p>
+        空空如也~~
 	</div>
 </html>
 

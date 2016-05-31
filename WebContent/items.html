@@ -72,18 +72,14 @@
                 $.ajax({
                     async:false, 
                     type:"GET",
-                    url: "getComment.do",
-                    data: {books_id: "3"},
+                    url: "getAllComment.do",
                     success:function(data){
                         var obj = JSON.parse(data);
                         for(var i = 0;i<3;++i){
                         var booktag = "review" + tot;
-                        var bookname = "创业维艰";
-                        //var bookname = obj[j].name;
-                       // var imgtag = "img" + tot;
-                        //var img = obj[j].pic;
+                        var bookname = "读书分享";
+                        var content = obj[i].comment;
                         var contenttag = "p" +tot;
-                        var content = obj[0];
                         var detailtag = "r"+tot;
                         var bookid = "3";
                         document.getElementById(detailtag).href = "comments.html?books_id=" +bookid ;
