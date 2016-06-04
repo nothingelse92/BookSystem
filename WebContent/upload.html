@@ -35,18 +35,21 @@
                 var contact = $("#contact").val();
                 var picture = $("#picture").val();
                 var choice = $("#choice").val();
-                //var type =  $("#flow1").val();
+                var type =  $("#flow1").val();
                 if(name.length == 0 || description.length == 0 || contact.length == 0){
                     alert("输入不能为空!");
+                }else{
+                    var timestamp= new Date().getTime();
+                    timestamp = parseInt(timestamp/1000);
+				    $.ajax({  
+                        type: "POST",  
+                        url: "insertBook.do",  
+                        data: {name:name,owner_id:"0",pic:picture,description:description,upload_time:timestamp,price:"0",type:"0"},  
+                        success:function(data){
+						    alert("上传成功!");
+                        }  
+				    });  
                 }
-				$.ajax({  
-                   type: "POST",  
-                   url: "insertBook.do",  
-                   data: {name:name,owner_id:"0",pic:picture,description:description,upload_time:"0",price:"0",type:"0"},  
-                   success:function(data){
-						alert("上传成功!");
-                   }  
-				});  
 				});
             });
         </script> 

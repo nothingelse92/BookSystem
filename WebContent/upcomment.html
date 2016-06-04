@@ -26,8 +26,8 @@
         <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
         <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
         <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
-        <script src="assets/js/jquery-1.11.1.min.js"></script>
-        <script type="text/javascript">
+        <script src="assets/js/jquery-1.11.1.min.js" charset="utf-8"></script>
+        <script type="text/javascript" charset="utf-8">
 	        $(document).ready(function(){
                 function GetRequest() {
                     var url = location.search;
@@ -44,16 +44,18 @@
                 var Request = new Object();
                 Request = GetRequest();
                 var book_id = Request["books_id"];
+                var timestamp= new Date().getTime();
+                timestamp = parseInt(timestamp/1000);
                 $("button").click(function(){
 				    var score= $("#score").val();
                     var content = $("#content").val();
                     if(score.length == 0 || content.length == 0){
                         alert("输入不能为空!");
                     }
-			    	$.ajax({  
+			    	$.ajax({ 
                         type: "POST",  
                         url: "insertComment.do",  
-                        data: {books_id:book_id,user_id:"0",comment:content,time:"0",rate:score},  
+                        data: {books_id:book_id,user_id:"1",comment:content,time:timestamp,rate:score},  
                         success:function(data){
 						    alert("提交成功!");
                         }  

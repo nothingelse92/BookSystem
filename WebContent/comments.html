@@ -27,7 +27,17 @@
       <script>     
         function getLocalTime(nS) {     
             return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');     
-        }        
+        } 
+        function zanClick(comment_id){
+            $.ajax({  
+                type: "POST",  
+                url: "likeComment.do",  
+                data: {comment_id: comment_id},  
+                success:function(data){
+                    alert("成功点赞!");
+                }  
+			});  
+        }
     </script>
     <script type="text/javascript">
 		$(document).ready(function(){
@@ -45,7 +55,7 @@
                         temp += context + "</p>";
                         temp +=  "<p align = \"right\"><span class=\"label label-default\">";
                         temp += "user_"+user +" "+getLocalTime(commentTime);
-                        temp += "</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class=\"btn btn-primary\" href=\"#\">点赞</a></p>";
+                        temp += "</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class=\"btn btn-primary\" onclick = \"zanClick(" + obj[i].id + ")\">点赞("+(Number(obj[i].hot)+1)+")</a></p>";
                         insertHtml += temp;
                     }
                     document.getElementById("comment").innerHTML = insertHtml; 
